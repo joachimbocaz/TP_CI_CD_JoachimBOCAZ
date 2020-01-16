@@ -13,11 +13,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: install dependencies
+      - name: Install dependencies
         run: |
           npm ci
           npm ci --prefix packages/core
-      - name: lint, build and test
+      - name: Lint, build and test
         env:
           ASCIIDOCTOR_CORE_VERSION: v2.0.9
         run: |
@@ -34,19 +34,19 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       # install dependencies
-      - name: install dependencies
+      - name: Install dependencies
         run: |
           npm ci
           npm ci --prefix packages/core
       # package and publish
-      - name: package and publish
+      - name: Package and publish
         env:
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           ./scripts/package.sh
           ./scripts/publish.sh
       # create the GitHub release
-      - name: create release
+      - name: Create release
         id: create_release
         uses: actions/create-release@v1.0.0
         env:
@@ -57,7 +57,7 @@ jobs:
           draft: false
           prerelease: false
       # upload assets
-      - name: upload code source as a zip file
+      - name: Upload source code as a zip file
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -66,7 +66,7 @@ jobs:
           asset_path: packages/core/bin/asciidoctor.js.dist.zip
           asset_name: asciidoctor.js.dist.zip
           asset_content_type: application/zip
-      - name: upload code source as a tar.gz file
+      - name: Upload source code as a tar.gz file
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
