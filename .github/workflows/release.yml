@@ -18,12 +18,12 @@ jobs:
           npm ci
           npm ci --prefix packages/core
       - name: lint, build and test
+        env:
+          ASCIIDOCTOR_CORE_VERSION: v2.0.9
         run: |
           npm run lint
           npm t
           npm run travis --prefix packages/core
-        env:
-          ASCIIDOCTOR_CORE_VERSION: v2.0.9
   publish:
     needs: build
     runs-on: ubuntu-latest
@@ -40,11 +40,11 @@ jobs:
           npm ci --prefix packages/core
       # package and publish
       - name: package and publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           ./scripts/package.sh
           ./scripts/publish.sh
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         # create the GitHub release
         - name: create release
           id: create_release

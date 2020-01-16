@@ -18,11 +18,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
+      env:
+        ASCIIDOCTOR_CORE_VERSION: ${{ matrix.asciidoctor-core-version }}
       run: |
         npm ci
         npm ci --prefix packages/core
         npm run lint
         npm run test
         npm run travis --prefix packages/core
-      env:
-        ASCIIDOCTOR_CORE_VERSION: ${{ matrix.asciidoctor-core-version }}
