@@ -41,7 +41,7 @@ jobs:
       # package and publish
       - name: package and publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           ./scripts/package.sh
           ./scripts/publish.sh
