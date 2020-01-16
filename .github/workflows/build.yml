@@ -1,4 +1,4 @@
-name: Node CI
+name: Build
 
 on: [push]
 
@@ -13,10 +13,10 @@ jobs:
         asciidoctor-core-version: [v2.0.9, master]
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node ${{matrix.node-version}}
+    - name: use Node ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{matrix.node-version}}
+        node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
         npm ci
@@ -25,4 +25,4 @@ jobs:
         npm run test
         npm run travis --prefix packages/core
       env:
-        ASCIIDOCTOR_CORE_VERSION: ${{matrix.asciidoctor-core-version}}
+        ASCIIDOCTOR_CORE_VERSION: ${{ matrix.asciidoctor-core-version }}
