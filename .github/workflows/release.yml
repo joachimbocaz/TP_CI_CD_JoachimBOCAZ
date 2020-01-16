@@ -45,33 +45,33 @@ jobs:
         run: |
           ./scripts/package.sh
           ./scripts/publish.sh
-        # create the GitHub release
-        - name: create release
-          id: create_release
-          uses: actions/create-release@v1.0.0
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: ${{ github.ref }}
-            release_name: ${{ github.ref }}
-            draft: false
-            prerelease: false
-        # upload assets
-        - name: upload code source as a zip file
-          uses: actions/upload-release-asset@v1.0.1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: packages/core/bin/asciidoctor.js.dist.zip
-            asset_name: asciidoctor.js.dist.zip
-            asset_content_type: application/zip
-        - name: upload code source as a tar.gz file
-          uses: actions/upload-release-asset@v1.0.1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: packages/core/bin/asciidoctor.js.dist.tar.gz
-            asset_name: asciidoctor.js.dist.tar.gz
-            asset_content_type: application/tar+gzip
+      # create the GitHub release
+      - name: create release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+      # upload assets
+      - name: upload code source as a zip file
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: packages/core/bin/asciidoctor.js.dist.zip
+          asset_name: asciidoctor.js.dist.zip
+          asset_content_type: application/zip
+      - name: upload code source as a tar.gz file
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: packages/core/bin/asciidoctor.js.dist.tar.gz
+          asset_name: asciidoctor.js.dist.tar.gz
+          asset_content_type: application/tar+gzip
