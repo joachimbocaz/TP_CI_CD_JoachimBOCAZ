@@ -6,13 +6,13 @@ addons:
   chrome: stable
  
 env:
-- ASCIIDOCTOR_CORE_VERSION=v2.0.10
+#- ASCIIDOCTOR_CORE_VERSION=v2.0.10
 - ASCIIDOCTOR_CORE_VERSION=master #test seulement sur la branch master pour le moment
 #demarre la
 
 node_js:
-- 'lts/*' #pour tout les utilisateurs
-#- 'node' #dernière version a rajouter plus tard
+- 'lts/*' #version pour tout les utilisateurs
+#- 'node' #dernière version, a rajouter plus tard
 
 jdk:
 - oraclejdk8
