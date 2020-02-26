@@ -7,7 +7,7 @@ addons:
  
 env:
 - ASCIIDOCTOR_CORE_VERSION=v2.0.10
-- ASCIIDOCTOR_CORE_VERSION=master #test seulement sur la branch master pour le moment
+#- ASCIIDOCTOR_CORE_VERSION=master #test seulement sur la branch master pour le moment
 #demarre la
 
 node_js:
