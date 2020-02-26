@@ -1,29 +1,49 @@
-language: node_js
+dist: trusty
+conditions: v1
 
-env : 
+language: node_js
+addons:
+  chrome: stable
+
+env:
 - ASCIIDOCTOR_CORE_VERSION=v2.0.10
 - ASCIIDOCTOR_CORE_VERSION=master
 
 node_js:
-- 'lts/*' #derniere version lts de node distribué
-- 'node' #derniere version stable de node distribué
-
-os:
-- linux
-- osx
+- 'lts/*'
+- 'node'
 
 jdk:
 - oraclejdk8
 
 install:
 - npm ci
-- npmm ci --prefix packages/core
+- npm ci --prefix packages/core
+
+cache:
+  directories:
+  - "$HOME/.npm"
+  - "$HOME/.dts"
 
 script:
 - npm run lint
 - npm run test
 - npm run travis --prefix packages/core
-  #yarn test -> alternatuve de npm test
-  #- sudo npm install
-  #pariel que install ?
-  #- sudo npm run test
+
+jobs:
+  include:
+    - stage: release
+      if: |
+        repo = 'asciidoctor/asciidoctor.js' AND \
+        tag IS present
+      script:
+      - ./scripts/package.sh
+      - ./scripts/publish.sh
+      deploy:
+        - provider: releases
+          api_key: ${GITHUB_TOKEN}
+          file: packages/core/bin/asciidoctor.js.dist.*
+          skip_cleanup: true
+          file_glob: true
+          on:
+            tags: true
