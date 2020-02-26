@@ -10,16 +10,18 @@ env:
 - ASCIIDOCTOR_CORE_VERSION=master
 
 node_js:
-- 'lts/*'
-- 'node'
+- 'lts/*' #pour tout les utilisateurs
+#- 'node' #dernière version
 
 jdk:
 - oraclejdk8
 
 install:
-- npm ci
+#- npm install
+- npm ci #plus performant que npm install
 - npm ci --prefix packages/core
 
+#cache necessaire pour accélerer l'installation
 cache:
   directories:
   - "$HOME/.npm"
