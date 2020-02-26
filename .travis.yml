@@ -1,5 +1,9 @@
 language: node_js
 
+env : 
+- ASCIIDOCTOR_CORE_VERSION=v2.0.10
+- ASCIIDOCTOR_CORE_VERSION=master
+
 node_js:
 - 'lts/*' #derniere version lts de node distribué
 - 'node' #derniere version stable de node distribué
