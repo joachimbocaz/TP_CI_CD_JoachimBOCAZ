@@ -4,14 +4,14 @@ conditions: v1
 language: node_js
 addons:
   chrome: stable
-
+ 
 env:
 - ASCIIDOCTOR_CORE_VERSION=v2.0.10
 - ASCIIDOCTOR_CORE_VERSION=master
 
 node_js:
 - 'lts/*' #pour tout les utilisateurs
-#- 'node' #dernière version
+#- 'node' #dernière version a rajouter plus tard
 
 jdk:
 - oraclejdk8
