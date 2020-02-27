@@ -1,51 +1,74 @@
 dist: trusty
 conditions: v1
-
 language: node_js
 addons:
   chrome: stable
- 
+
 env:
-#- ASCIIDOCTOR_CORE_VERSION=v2.0.10
-- ASCIIDOCTOR_CORE_VERSION=master #test seulement sur la branch master pour le moment
+  matrix:
+   #- ASCIIDOCTOR_CORE_VERSION=v2.0.10
+    - ASCIIDOCTOR_CORE_VERSION=master
+  global:
+    - NODE_ENV=production
+    # GITHUB_TOKEN
+    - secure: 1da65329b37f6ffb1a7ac86f12a3c2f8db4cc0b3 #TOKEN
+    - GIT_DEPLOY_REPO=https://$GITHUB_TOKEN@github.com/joachimbocaz/TP_CI_CD_JoachimBOCAZ.git
 
 node_js:
-- 'lts/*' #version pour tout les utilisateurs
-- 'node' #dernière version, a rajouter plus tard
+- lts/*
+- node
+
+#matrix:
+#  fast_finish: true
 
 jdk:
 - oraclejdk8
 
-install:
-#- npm install
-- npm ci #plus performant que npm install
-- npm ci --prefix packages/core
+#install:
+#- npm install -g firebase-tools
 
-#cache necessaire pour accélerer l'installation
 cache:
   directories:
   - "$HOME/.npm"
   - "$HOME/.dts"
+  - node_modules
+
+#before_install:
+#- npm prune
 
 script:
 - npm run lint
 - npm run test
 - npm run travis --prefix packages/core
 
+#after_success:
+#- firebase deploy --token "$FIREBASE_TOKEN"
+
 jobs:
   include:
-    - stage: release
-      if: |
-        repo = 'asciidoctor/asciidoctor.js' AND \
-        tag IS present
-      script:
-      - ./scripts/package.sh
-      - ./scripts/publish.sh
-      deploy:
-        - provider: releases
-          api_key: ${GITHUB_TOKEN}
-          file: packages/core/bin/asciidoctor.js.dist.*
-          skip_cleanup: true
-          file_glob: true
-          on:
-            tags: true
+  - stage: release
+    if: |
+      repo = 'asciidoctor/asciidoctor.js' AND \
+      tag IS present
+    script:
+    - "./scripts/publish.sh"
+    deploy:
+    - provider: releases
+      api_key: "${GITHUB_TOKEN}"
+      file: packages/core/bin/asciidoctor.js.dist.*
+      skip_cleanup: true
+      file_glob: true
+      on:
+        tags: true
+
+###### Copier du tuto, à étudier
+#deploy:
+#  skip_cleanup: true
+
+#  provider: script
+#  script: ./scripts/deploy.sh
+
+  # restriction
+#  on:
+#    branch: master
+#    node: '5'

@@ -13,6 +13,8 @@ Asciidoctor est un processeur de texte et une chaîne de publication rapide et o
   - https://github.com/asciidoctor/asciidoctor.js
 - Dépot utilisé pour le rendu : 
   - https://github.com/joachimbocaz/TP_CI_CD_JoachimBOCAZ
+- Lien système d'intégration :
+  - https://travis-ci.org/joachimbocaz/TP_CI_CD_JoachimBOCAZ
 
 Pour avoir accès au sytème d'intégration, il suffit d'aller sur le site https://travis-ci.com, de se connecter avec son compte github et de sélectionner le dépot correspondant au projet. Il faut au préalable avoir été ajouter au projet.
 
