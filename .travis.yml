@@ -5,14 +5,13 @@ addons:
   chrome: stable
 
 env:
-  matrix:
    #- ASCIIDOCTOR_CORE_VERSION=v2.0.10
     - ASCIIDOCTOR_CORE_VERSION=master
-  global:
-    - NODE_ENV=production
+  #global:
+  #  - NODE_ENV=production
     # GITHUB_TOKEN
-    - secure: 1da65329b37f6ffb1a7ac86f12a3c2f8db4cc0b3 #TOKEN
-    - GIT_DEPLOY_REPO=https://$GITHUB_TOKEN@github.com/joachimbocaz/TP_CI_CD_JoachimBOCAZ.git
+  #  - secure: 1da65329b37f6ffb1a7ac86f12a3c2f8db4cc0b3 #TOKEN
+  #  - GIT_DEPLOY_REPO=https://$GITHUB_TOKEN@github.com/joachimbocaz/TP_CI_CD_JoachimBOCAZ.git
 
 node_js:
 - lts/*
@@ -27,11 +26,16 @@ jdk:
 #install:
 #- npm install -g firebase-tools
 
+install:
+#- npm install
+- npm ci #plus performant que npm install
+- npm ci --prefix packages/core
+
 cache:
   directories:
   - "$HOME/.npm"
   - "$HOME/.dts"
-  - node_modules
+#  - node_modules
 
 #before_install:
 #- npm prune
