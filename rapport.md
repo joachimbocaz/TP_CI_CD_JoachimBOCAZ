@@ -23,7 +23,7 @@ Les tests du projets sont disponibles à l'adresse suivante : https://github.com
 
 
 Actuellement l'ajout ou la supression de code fait bien intervenir le pipeline.
- 
+
 
 
 
@@ -33,4 +33,4 @@ Bibliographie
 - https://putaindecode.io/articles/deploiement-continu-avec-travis-ci-et-gh-pages/
 - https://blog.travis-ci.com/2019-05-30-setting-up-a-ci-cd-process-on-github
 - https://docs.travis-ci.com/user/deployment/npm/
-
+- https://blog.3ie.fr/adoptez-lintegration-et-le-deploiement-continus-avec-travis-et-cloud-foundry/
