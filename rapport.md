@@ -16,3 +16,13 @@ Asciidoctor est un processeur de texte et une chaîne de publication rapide et o
 
 Pour avoir accès au sytème d'intégration, il suffit d'aller sur le site https://travis-ci.com, de se connecter avec son compte github et de sélectionner le dépot correspondant au projet. Il faut au préalable avoir été ajouter au projet.
 
+Les tests du projets sont disponibles à l'adresse suivante : https://github.com/joachimbocaz/TP_CI_CD_JoachimBOCAZ/tree/master/packages/core/tasks/test
+
+
+
+Bibliographie
+--
+
+- https://putaindecode.io/articles/deploiement-continu-avec-travis-ci-et-gh-pages/
+- https://blog.travis-ci.com/2019-05-30-setting-up-a-ci-cd-process-on-github
+
