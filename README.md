@@ -1,7 +1,7 @@
 **TP intégration continue**
--
 
-- Plateforme de dévellopement :
+
+- Plateforme de gestion de code source :
   - Github
 - Système d'intégration continue utiliser : 
   - Travis
