@@ -4,7 +4,7 @@
  * Convert a JSON to an (Opal) Hash.
  * @private
  */
-var toHash = function (object) {
+var toHash = function (object) 
   return object && !object.$$is_hash ? Opal.hash2(Object.keys(object), object) : object
 }
 
